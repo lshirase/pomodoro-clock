@@ -14,12 +14,12 @@ body {
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
     grid-template-rows: auto;
     grid-template-areas: 
-      "title title . . skip"
+      "title title title . skip"
       ". play . set ."
       ". time time time ."
-      ". time time time ."
-      ". time time time ."
       ". . action . ."
+      ". . . . ."
+      ". . . . ."
       "round round . goal goal";
   }
 
@@ -32,33 +32,114 @@ body {
 #container > #title{
     grid-area: title;
     text-align: justify;
+    font-size: 6vw;
 }
 
 #container > #skip{
     grid-area: skip;
-    text-align: left;
+    text-align: right;
+    font-size: 6vw;
 }
 
 #container > #time{
     grid-area: time;
+    font-size: 20vw;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    min-width: 300px;
+
+
 }
 
 #container > #set{
     grid-area: set;
+    font-size:3vw;
+    max-height: 100px;
+    justify-self: flex-end;
+    align-self: flex-end;
+    
+
+}
+
+#session{
+    display:inline-block;
+    text-align: left;
+
+}
+
+#break{
+    display:inline-block;
+    text-align: right;
+
+}
+
+.incrementDisplay {
+    display: inline-block;
+}
+
+.increment {
+    display: inline-block;
+}
+
+.up {
+    line-height: 15px;
+    font-size: 30px;
+    padding-bottom: 5px;
+}
+
+.down {
+    line-height: 15px;
+    font-size: 30px;
+    padding-top: 5px;
+}
+
+
+
+#myTime {
+    font-size: 3vh;
+    width: 60px;
+    text-align: center;
+
 }
 
 #container > #round{
     grid-area: round;
+    font-size: 6vw;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+
 }
 
 #container > #play{
     grid-area: play;
+    font-size: 3vw;
+    display: flex;
+    align-items: flex-end;
+}
+
+
+#container > #play:hover{
+    text-decoration:underline;
 }
 
 #container > #goal{
     grid-area: goal;
+    font-size: 6vw;
+    text-align: right;
+    position: absolute;
+    bottom: 0;
+    right: 0;
 }
 
 #container > #action{
     grid-area: action;
+    text-align: center;
+    font-size: 2vw;
+    min-height:40px;
 }
+
+
+
+
