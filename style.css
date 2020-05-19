@@ -1,11 +1,64 @@
+body {
+    font-family: "Roboto"
+}
+
 #container {
+    
     display: grid;
-    grid-template-columns: 50px 50px 50px;
+    /* position: absolute; */
+    /* top: 5%;
+    left: 5%; */
+    width: 98vw;
+    height: 100vh;
+    /* border: 10px solid #000000; */
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
     grid-template-rows: auto;
     grid-template-areas: 
-      ". header header skip"
-      "seven eight nine divide"
-      "four five six multi"
-      "one two three minus"
-      "zer equals clear plus";
+      "title title . . skip"
+      ". play . set ."
+      ". time time time ."
+      ". time time time ."
+      ". time time time ."
+      ". . action . ."
+      "round round . goal goal";
   }
+
+  
+#container > div {
+    background: #EDE7F6;
+    border: 1px dashed #000000;
+  }
+
+#container > #title{
+    grid-area: title;
+    text-align: justify;
+}
+
+#container > #skip{
+    grid-area: skip;
+    text-align: left;
+}
+
+#container > #time{
+    grid-area: time;
+}
+
+#container > #set{
+    grid-area: set;
+}
+
+#container > #round{
+    grid-area: round;
+}
+
+#container > #play{
+    grid-area: play;
+}
+
+#container > #goal{
+    grid-area: goal;
+}
+
+#container > #action{
+    grid-area: action;
+}
