@@ -1,9 +1,9 @@
 //set global vars
-let breakTime = 3, workTime = 5, displayTime = workTime;
+let breakTime = 1, workTime = 2, displayTime = workTime;
 let onDeck = "break";
 let countDownFlag = true
 let startString = 'START&gt;&gt;&gt;', stopString = 'STOP&lt;&lt;&lt;';
-let roundCount = 0, goalCount = 0;
+let roundCount=0, goalCount=0, firstRoundFlag=true;
 
 //select DOM items 
 const container = document.querySelector('#container');
@@ -16,11 +16,11 @@ const round = container.querySelector('#round');
 const goal = container.querySelector('#goal');
 
 //set initial time to workTime
-setDisplayTime()
-play.innerHTML=startString
+setDisplayTime();
+setPlayButton(startString);
 
 //add event listeners
-play.addEventListener('click',e=>{play.innerHTML===startString ? countDown():pause()});
+play.addEventListener('click',e=>{play.innerHTML===startString ? countDown():pause()}); //runCountown function or pause function 
 
 //functions
 function secToSting(secInt){ //converts seconds to string
@@ -31,7 +31,6 @@ function secToSting(secInt){ //converts seconds to string
     seconds = secInt - (60*minutes)
 
     return n(minutes) + ":" + n(seconds);
-
     //function to add leading 0
     function n(n) {
       return n > 9 ? "" + n : "0" + n;
@@ -42,12 +41,17 @@ function setDisplayTime(){
     time.innerHTML = secToSting(displayTime)
 }
 
+function setPlayButton(buttonString){
+    play.innerHTML=buttonString;
+}
+
 function countDown(){
     play.innerHTML = stopString;
+    if (firstRoundFlag) setRound(), firstRoundFlag=false;
     if(countDownFlag) countDownFlag = setInterval(decrement, 1000);
     function decrement() {
         if(displayTime==0) {
-            skipSession()
+            nextSession()
         }
         else{
             displayTime--;
@@ -62,9 +66,25 @@ function pause(){
     countDownFlag=true;
 }
 
-function skipSession(e=false){ 
-    if(e) play.innerHTML = startString;
-    displayTime = onDeck==="break" ? breakTime:workTime;
-    onDeck = onDeck==="break" ? "session":"break"; 
-    setDisplayTime()
+function nextSession(){ 
+    if(onDeck==='break'){
+        displayTime = breakTime;
+        onDeck = "work";
+    }
+    else { //onDeck is work
+        displayTime = workTime;
+        onDeck = "break";
+        setRound()
+    }
+    setDisplayTime();
+}
+
+function setRound(){
+    roundCount++
+    if(roundCount>4) roundCount=0, goalCount++;
+    round.innerHTML = fractionString('ROUND', roundCount, 4)
+    goal.innerHTML = fractionString('GOAL', goalCount, 12)
+    function fractionString(type,numerator,denominator){
+        return `${type}: ${numerator}/${denominator}`
+    }
 }
