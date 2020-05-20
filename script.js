@@ -1,8 +1,8 @@
 //set global vars
-let breakTime = 60, workTime = 120, displayTime = workTime;
+let breakTime = 300, workTime = 1500, displayTime = workTime;
 let onDeck = "break";
 let countDownFlag = true
-let startString = 'STAR&gt;&gt;&gt;', stopString = 'STOP&lt;&lt;&lt;';
+let startString = 'START&gt;&gt;&gt;', stopString = 'STOP&lt;&lt;&lt;';
 let roundCount=0, goalCount=0, firstRoundFlag=true;
 let initalMessage = 'LET\'S START WORKING . . .', pauseMessage = 'GET BACK TO WORK ! ! !', breakMessage = 'TIME TO CHILL . . . z z z', workMessage = 'WORKING . . .';
 let messageFlag; 
@@ -135,9 +135,6 @@ function setMessage(messageString){
         }
     }
 }
-
-
-
 
 
 function incrementTime(e, type){
